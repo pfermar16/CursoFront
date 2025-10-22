@@ -7,14 +7,24 @@
         body {
             background-color: #F0B137;
             font-family: Arial, sans-serif;
-            color: #FFFFFF
+            color: #FFFFFF;
         }
 
-        header, footer {
-            background-color: #F05637;
-            color: #FFFFFF;
+        header {
+            background-image: url('imagenes/mantel.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            color: #000000;
             text-align: center;
-            padding: 10px 0;
+        }
+
+        footer {
+            background-image: url('imagenes/cerdo.jpg');
+            background-repeat: repeat;
+            padding: 20px;
+            color: #000000;
+            text-align: center;
         }
 
         h2 {
@@ -23,12 +33,12 @@
         }
 
         img {
-        border: 10px solid #F227F5;
-        border-radius: 8px;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 10px auto;
+            border: 10px solid #F227F5;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
         }
 
         ol > li:first-child {
@@ -40,16 +50,24 @@
             font-size: 30px;
         }
 
-        input[type="submit"]{
-            background-color: #28a745; /* verde */
+        ul, ol {
+            border: 2px solid #333; /* color del borde */
+            border-radius: 8px;
+            padding: 10px; /* margen interno */
+            margin: 10px 0;
+            list-style-position: inside; /* opcional: para que los puntos/ números estén dentro del borde */
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
             color: #fff;
             border: none;
             padding: 8px 14px;
             border-radius: 6px;
             cursor: pointer;
         }
-        input[type="reset"]{
-            background-color: #dc3545; /* rojo */
+        input[type="reset"] {
+            background-color: #dc3545; 
             color: #fff;
             border: none;
             padding: 8px 14px;
@@ -57,7 +75,7 @@
             cursor: pointer;
         }
         input[type="submit"]:hover,
-        input[type="reset"]:hover{
+        input[type="reset"]:hover {
             opacity: 0.9;
         }
     </style>
@@ -107,7 +125,9 @@
     </form>
 
     <footer>
+        <br></br>
         <p>@2025 Morcillosa C/Embutido, 89</p>
+        <br></br>
     </footer>
 </body>
 </html>
