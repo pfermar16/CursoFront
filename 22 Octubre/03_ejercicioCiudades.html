@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>Listado de Ciudades:</h2>
+        <input type="text" id="ciudadInput" placeholder="Introduce una ciudad">
+        <button type="button" id="agregarBtn">Agregar Ciudad</button>
+
+        <ol id="lista">
+            
+        </ol>
+
+        <script>
+            let lista = document.getElementById("lista");
+            let agregarBtn = document.getElementById("agregarBtn");
+            let ciudadInput = document.getElementById("ciudadInput");
+
+            agregarBtn.addEventListener("click", agregaCiudad)
+
+            function agregaCiudad() {
+                let ciudad = ciudadInput.value.trim();
+                if (ciudad !== "") {
+                    let li = document.createElement("li");
+                    li.textContent = ciudad;
+                    lista.appendChild(li);
+                    ciudadInput.value = "";
+                    ciudadInput.focus();
+                } else {
+                    alert("Por favor, introduce una ciudad válida.");
+                }
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h2>Introduce Nombre y Apellido:</h2>
+        <input type="text" id="nombreInput" placeholder="Nombre">
+        <input type="text" id="apellidoInput" placeholder="Apellido">
+        <button type="button" id="insertarBtn">Insertar</button>
+        <input type="text" id="nombreCompleto" placeholder="Nombre Completo" readonly>
+        <button type="button" id="contenidoCompletoBtn">OK</button>
+
+        <ul id="listaNombres">
+
+        </ul>
+
+        <script>
+            let insertarBtn = document.getElementById("insertarBtn");
+            let contenidoCompletoBtn = document.getElementById("contenidoCompletoBtn");
+            let nombreInput = document.getElementById("nombreInput");
+            let apellidoInput = document.getElementById("apellidoInput");
+            let nombreCompletoInput = document.getElementById("nombreCompleto");
+            let listaNombres = document.getElementById("listaNombres");
+
+            insertarBtn.addEventListener("click", insertarNombre);
+            contenidoCompletoBtn.addEventListener("click", mostrarContenidoCompleto);
+
+            function insertarNombre() {
+                let nombre = nombreInput.value.trim();
+                let apellido = apellidoInput.value.trim();
+                if (nombre !== "" && apellido !== "") {
+                    nombreCompletoInput.value = nombre + " " + apellido;
+                    nombreInput.value = "";
+                    apellidoInput.value = "";
+                    nombreInput.focus();
+                } else {
+                    alert("Por favor, introduce tanto el nombre como el apellido.");
+                }
+            }
+
+            function mostrarContenidoCompleto() {
+                let nombreCompleto = nombreCompletoInput.value.trim();
+                let length = nombreCompleto.length;
+                if (nombreCompleto !== "") {
+                    let li = document.createElement("li");
+                    li.textContent = nombreCompleto + " (Longitud: " + length + " caracteres)";
+                    listaNombres.appendChild(li);
+                    nombreCompletoInput.value = "";
+                } else {
+                    alert("El campo de Nombre Completo está vacío.");
+                }
+            }            
+        </script>
+    </body>
+</html>

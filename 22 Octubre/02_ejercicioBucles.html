@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <input type="text" id="entrada" placeholder="Introduce número">
+        <input type="button" id="boton"></input>
+
+        <div id="resultadoDiv"></div>
+
+        <h2>Suma de los números pares del 1 al 1000</h2>
+        <p id="resultado"></p>
+
+        <h2>Valor medio de los 102 primeros números impares</h2>
+        <p id="valorMedio"></p>
+
+        <h2>Función Suma con argumentos variables</h2>
+        <p id="resultadoSuma"></p>
+
+        
+
+        <script>
+            let suma = 0;
+
+            for (let i = 2; i <= 1000; i += 2) {
+            suma += i;
+            }
+
+            document.getElementById("resultado").textContent = "La suma es: " + suma;
+        
+            let sumaImpares = 0;
+            let cantidadImpares = 102;
+            let contador = 0;
+            let numero = 1;
+
+            while (contador < cantidadImpares) {
+                sumaImpares += numero;
+                numero += 2; 
+                contador++;
+            }
+
+            let valorMedio = sumaImpares / cantidadImpares;
+            document.getElementById("valorMedio").textContent = "El valor medio es: " + valorMedio;
+        
+            function Suma() {
+                let total = 0;
+                for (let i = 0; i < arguments.length; i++) {
+                    total += arguments[i];
+                }
+                return total;
+            }
+
+            let resultado1 = Suma(5, 9, 3, 8);
+            let resultado2 = Suma(5,1);
+
+            document.getElementById("resultadoSuma").innerHTML = 
+                "Suma(5,9,3,8) = " + resultado1 + "<br>" +
+                "Suma(5,1) = " + resultado2;
+        
+            let boton = document.getElementById("boton");
+            boton.addEventListener("click", sacaNombre);
+
+            function sacaNombre() {
+                let valoIntroducido = document.getElementById("entrada");
+                let resultadoDiv = document.getElementById("resultadoDiv");
+                let nuevoElemento = document.createElement("p");
+                nuevoElemento.textContent = "Has introducido: " + valoIntroducido.value + "!";
+                resultadoDiv.appendChild(nuevoElemento);
+            }
+        
+        </script>
+
+    </body>
+</html>
