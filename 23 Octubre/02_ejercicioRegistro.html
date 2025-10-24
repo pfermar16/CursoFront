@@ -1,0 +1,194 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio Registro</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(imagenes/fondo1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 🔹 Título principal */
+        h2 {
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        fieldset {
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 400px !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 18px;
+            color: #222;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid black; /* borde inicial negro */
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Borde rojo si inválido */
+        input:invalid,
+        textarea:invalid,
+        select:invalid {
+            border-color: red;
+        }
+
+        /* Borde verde si válido */
+        input:valid,
+        textarea:valid,
+        select:valid {
+            border-color: green;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .botones {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Registro de Usuario</h2>
+
+    <fieldset>
+        <legend>Datos Personales</legend>
+
+        <input type="text" id="nombreCompleto" placeholder="Nombre Completo" required>
+        <input type="number" id="edad" placeholder="Edad" required min="10" max="120">
+        <input type="tel" id="telefono" placeholder="Teléfono (9 dígitos)" maxlength="9" pattern="[0-9]{9}">
+        <textarea id="direccion" placeholder="Dirección" cols="50" rows="4" maxlength="200"></textarea>
+    </fieldset>
+
+    <fieldset style="width:300px; margin-top:20px;">
+        <legend>Datos Frikis</legend>
+
+        <select id="idiomas">
+            <option value="" disabled selected>Selecciona un Idioma</option>
+            <option value="espanol">Español</option>
+            <option value="ingles">Inglés</option>
+            <option value="frances">Francés</option>
+        </select>
+
+        <select id="personajes">
+            <option value="" disabled selected>Selecciona un Personaje</option>
+            <optgroup label="Vengadores">
+                <option value="ironman">Iron Man</option>
+                <option value="thor">Thor</option>
+                <option value="hulk">Hulk</option>
+                <option value="capitanamerica">Capitán América</option>
+            </optgroup>
+            <optgroup label="4 Fantásticos">
+                <option value="mrfantastic">Mr. Fantástico</option>
+                <option value="mujerinvisible">Mujer Invisible</option>
+                <option value="antorcha">Antorcha Humana</option>
+                <option value="cosa">La Cosa</option>
+            </optgroup>
+        </select>
+
+        <div style="margin-top: 10px;">
+            <label for="colorFavorito">Color favorito:</label>
+            <input type="color" id="colorFavorito" value="#ff0000" />
+        </div>
+    </fieldset>
+
+    <div class="botones">
+        <button type="button" id="enviarBtn">Enviar</button>
+        <button type="button" id="limpiarBtn" style="margin-left: 10px;">Limpiar</button>
+    </div>
+
+    <script>
+        const campos = [
+            document.getElementById('nombreCompleto'),
+            document.getElementById('edad'),
+            document.getElementById('telefono'),
+            document.getElementById('direccion'),
+            document.getElementById('idiomas'),
+            document.getElementById('personajes')
+        ];
+
+        const enviarBtn = document.getElementById('enviarBtn');
+        const limpiarBtn = document.getElementById('limpiarBtn');
+
+        enviarBtn.addEventListener('click', () => {
+            let todoValido = true;
+            campos.forEach(campo => {
+                if (!campo.checkValidity()) {
+                    todoValido = false;
+                }
+            });
+
+            if (todoValido) {
+                alert('Datos enviados correctamente');
+            } else {
+                alert('Por favor, completa correctamente todos los campos.');
+            }
+        });
+
+        limpiarBtn.addEventListener('click', () => {
+            campos.forEach(campo => {
+                if (campo.tagName === 'SELECT') {
+                    campo.selectedIndex = 0;
+                } else {
+                    campo.value = '';
+                }
+                campo.style.borderColor = 'black';
+            });
+            document.getElementById('colorFavorito').value = '#ff0000';
+        });
+    </script>
+</body>
+
+</html>

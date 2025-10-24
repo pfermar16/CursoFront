@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Potencias</title>
+</head>
+
+<body>
+    <h2>Calculadora de Potencias</h2>
+    <input type="number" id="baseInput" placeholder="Base">
+    <input type="number" id="exponenteInput" placeholder="Exponente">
+    <button type="button" id="calculaBtn">Calcula</button>
+    <input type="text" id="resultadoInput" placeholder="Resultado" readonly>
+
+    <h2>Multiplicacion por si Mismo</h2>
+    <input type="text" id="resultadoPotenciaInput" placeholder="Resultado Potencia" readonly>
+    <button type="button" id="multiplicaBtn">Multiplica</button>
+    <input type="text" id="resultadoMultiplicaInput" placeholder="Resultado Multiplicación" readonly>
+
+    <script>
+        let calculaBtn = document.getElementById("calculaBtn");
+        let multiplicaBtn = document.getElementById("multiplicaBtn");
+        let baseInput = document.getElementById("baseInput");
+        let exponenteInput = document.getElementById("exponenteInput");
+        let resultadoInput = document.getElementById("resultadoInput");
+        let resultadoMultiplicaInput = document.getElementById("resultadoMultiplicaInput");
+
+        calculaBtn.addEventListener("click", calcularPotencia);
+        multiplicaBtn.addEventListener("click", multiplicarPorSiMismo);
+
+        function calcularPotencia() {
+            let base = parseFloat(baseInput.value);
+            let exponente = parseInt(exponenteInput.value);
+            if (!isNaN(base) && !isNaN(exponente)) {
+                let resultado = Math.pow(base, exponente);
+                resultadoInput.value = resultado;
+                resultadoPotenciaInput.value = resultado;
+            } else {
+                alert("Por favor, introduce valores numéricos válidos para la base y el exponente.");
+            }
+        }
+
+        function multiplicarPorSiMismo() {
+            let resultado = parseFloat(resultadoInput.value);
+            if (!isNaN(resultado)) {
+                let resultadoMultiplicacion = resultado * resultado;
+                resultadoMultiplicaInput.value = resultadoMultiplicacion;
+            } else {
+                alert("Por favor, calcula una potencia válida primero.");
+            }
+        }
+    </script>
+</body>
+
+</html>
