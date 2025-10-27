@@ -1,0 +1,131 @@
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 20px;
+    color: #222;
+}
+
+/* --- Cabecera del periódico --- */
+header {
+    text-align: center;
+    border-bottom: 3px double #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.fecha {
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+}
+
+/* --- Cuerpo del periódico --- */
+.periodico {
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px #0000001a;
+    column-gap: 40px;
+    border: 1px solid #ddd;
+}
+
+/* --- Artículos --- */
+article {
+    margin-bottom: 25px;
+    break-inside: avoid;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #111;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+p {
+    line-height: 1.8;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+/* --- Primera letra de cada p --- */
+p::first-letter {
+    font-size: 2em;
+    font-weight: bold;
+    float: left;
+    line-height: 1;
+    margin-right: 6px;
+    color: #444;
+}
+
+/* --- Imágenes entre artículos --- */
+.imagen-articulo {
+    text-align: center;
+    margin: 25px auto;
+    break-inside: avoid;
+}
+
+.imagen-articulo img {
+    width: 90%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.imagen-articulo figcaption {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* --- Pie de página --- */
+footer {
+    text-align: center;
+    border-top: 3px double #333;
+    margin-top: 40px;
+    padding-top: 10px;
+}
+
+footer img {
+    max-width: 60px;
+    display: block;
+    margin: 10px auto;
+}
+
+.creditos {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+}
+
+/* --- Diseño Responsive --- */
+
+/* Móviles: 1 columna */
+@media (max-width: 600px) {
+    .periodico {
+        column-count: 1;
+    }
+    .cabecera h1 {
+        font-size: 1.8em;
+    }
+}
+
+/* Tablets: 2 columnas */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .periodico {
+        column-count: 2;
+    }
+}
+
+/* Escritorio: 3 columnas */
+@media (min-width: 1025px) {
+    .periodico {
+        column-count: 3;
+    }
+}
