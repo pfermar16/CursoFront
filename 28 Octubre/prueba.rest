@@ -1,0 +1,5 @@
+###
+GET https://jsonplaceholder.typicode.com/albums?userId=3
+
+###
+GET https://jsonplaceholder.typicode.com/users

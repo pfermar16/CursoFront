@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Keyframe Animations con Imagen</title>
+
+    <style type="text/css">
+        body {
+            font-family: arial, verdana, sans-serif;
+            font-size: smaller;
+        }
+
+        #pooltable {
+            width: 800px;
+            height: 400px;
+            margin-bottom: 50px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #2e2e2e;
+        }
+
+        #zarrio {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background-image: url("imagenes/zarrio.jpg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        @keyframes zarrioMovement {
+            0% {
+                left: 0px;
+                top: 0px;
+                animation-timing-function: ease-in;
+            }
+
+            33% {
+                left: 250px;
+                top: 300px;
+            }
+
+            66% {
+                left: 500px;
+                top: 0px;
+            }
+
+            100% {
+                left: 700px;
+                top: 300px;
+                animation-timing-function: ease-out;
+            }
+        }
+
+        #zarrio.animate {
+            animation-name: zarrioMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: linear;
+            animation-iteration-count: 2;
+            animation-direction: alternate;
+        }
+
+        #cats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #cats img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #444;
+        }
+    </style>
+
+    <script>
+        var pooltable, zarrio, button;
+
+        function init() {
+            pooltable = document.getElementById("pooltable");
+            zarrio = document.getElementById("zarrio");
+            button = document.getElementById("button");
+
+            zarrio.addEventListener("animationstart", function (e) {
+                pooltable.classList.add("animate");
+            });
+
+            zarrio.addEventListener("animationiteration", function (e) {
+            });
+
+            zarrio.addEventListener("animationend", function (e) {
+                button.disabled = false;
+                zarrio.classList.remove("animate");
+                pooltable.classList.remove("animate");
+                mostrarGatos();
+            });
+        }
+
+        function startAnimation() {
+            button.disabled = true;
+            zarrio.classList.add("animate");
+        }
+
+        async function mostrarGatos() {
+            const contenedor = document.getElementById("cats");
+            contenedor.innerHTML = "<p>Cargando gatos...</p>";
+
+            try {
+                const respuesta = await fetch("https://api.thecatapi.com/v1/images/search?limit=10");
+                const datos = await respuesta.json();
+
+                contenedor.innerHTML = "";
+                datos.forEach(gato => {
+                    const img = document.createElement("img");
+                    img.src = gato.url;
+                    img.alt = "Gato";
+                    contenedor.appendChild(img);
+                });
+
+            } catch (error) {
+                contenedor.innerHTML = "<p>Error al cargar los gatos</p>";
+                console.error("Error al obtener gatos:", error);
+            }
+        }
+    </script>
+
+</head>
+
+<body onload="init()">
+    <div id="pooltable">
+        <div id="zarrio"></div>
+    </div>
+
+    <button id="button" onclick="startAnimation()">Iniciar Animación</button>
+
+    <div id="cats"></div>
+</body>
+
+</html>
